@@ -1,4 +1,6 @@
 import * as express from 'express';
+import * as cors from 'cors';
+import routes from './routes';
 
 class App {
   public app: express.Express;
@@ -21,7 +23,9 @@ class App {
     };
 
     this.app.use(express.json());
+    this.app.use(cors());
     this.app.use(accessControl);
+    routes(this.app);
   }
 
   public start(PORT: string | number):void {
