@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import LoginService from '../services/loginService';
 import LoginController from '../controllers/loginController';
-// import LoginService from '../services/loginService';
 
 export default class LoginRouter {
   public router: Router;

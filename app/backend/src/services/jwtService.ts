@@ -12,7 +12,7 @@ export default class JwtService {
     return token;
   }
 
-  static async validateRole(token: string) {
+  static validateRole(token: string) {
     try {
       const payload = jwt.verify(token, secret);
       return payload;
