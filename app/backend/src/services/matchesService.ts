@@ -77,32 +77,28 @@ export default class MatchesService implements IMatchesService {
   }
 
   async updateStatus(id: number): Promise<boolean> {
-    const match = await this.matchesModels.update(
+    const matchExists = await this.matchesModels.findByPk(id);
+
+    if (!matchExists) throw new ErrorHandler(StatusCodes.NOT_FOUND, 'match not found');
+
+    await this.matchesModels.update(
       { inProgress: false },
       { where: { id, inProgress: true } },
     );
-
-    if (!match) throw new ErrorHandler(StatusCodes.NOT_FOUND, 'match not found');
 
     return true;
   }
 
   async updateGols(id: number, homeTeamGoals: number, awayTeamGoals: number): Promise<boolean> {
-    const match = await this.matchesModels.update(
+    const matchExists = await this.matchesModels.findByPk(id);
+
+    if (!matchExists) throw new ErrorHandler(StatusCodes.NOT_FOUND, 'match not found');
+
+    await this.matchesModels.update(
       { homeTeamGoals, awayTeamGoals },
       { where: { id } },
     );
 
-    if (!match) throw new ErrorHandler(StatusCodes.NOT_FOUND, 'match not found');
-
     return true;
   }
-
-  // async findById(id: number): Promise<ITeams | null> {
-  //   const team = await this.teamsModels.findByPk(id);
-
-  //   if (!team) throw new ErrorHandler(StatusCodes.NOT_FOUND, 'team not found');
-
-  //   return team;
-  // }
 }

@@ -60,14 +60,4 @@ export default class MatchesController {
       next(err);
     }
   }
-
-  // async findById(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-  //   try {
-  //     const { id } = req.params;
-  //     const team = await this.teamsService.findById(parseInt(id, 10));
-  //     return res.status(StatusCodes.OK).json(team);
-  //   } catch (err) {
-  //     next(err);
-  //   }
-  // }
 }

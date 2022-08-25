@@ -11,6 +11,8 @@ export default class TeamsService implements ITeamsService {
   async list(): Promise<ITeams[] | void> {
     const teamsList = await this.teamsModels.findAll();
 
+    if (!teamsList) throw new ErrorHandler(StatusCodes.INTERNAL_SERVER_ERROR, 'Server Error');
+
     return teamsList;
   }
 
